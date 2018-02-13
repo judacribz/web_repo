@@ -1,7 +1,7 @@
 var chatbox, chat, chatMsgs, chatInputBox;
 var chatVisibility = false;
-var emptySpace = new RegExp("[\\s]");
 var msg;
+var window, document;
 
 window.onload = function () {
 	chatbox = document.getElementById('chatbox');
