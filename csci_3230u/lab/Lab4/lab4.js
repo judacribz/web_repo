@@ -28,7 +28,7 @@ function selectCell(grade) {
         '[row="' + row + '"][col="' + col + '"]');
 
     if (cell.getAttribute('class') == SELECT) {
-        cell.setAttribute("class", DESELECT);
+        deselectAll();
     } else {
         deselectAll();
         cell.setAttribute("class", SELECT);
