@@ -7,10 +7,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo/samples": "2.1.1",
+    "expo": "^25.0.0",
     "react": "16.2.0",
-    "react-native": "0.53.0"
+    "react-native": "0.52.0",
+    "react-navigation": "^1.0.0-beta.27"
   },
   "devDependencies": {
+    "jest-expo": "^25.0.0",
     "babel-jest": "22.2.2",
     "babel-preset-react-native": "4.0.0",
     "jest": "22.3.0",
