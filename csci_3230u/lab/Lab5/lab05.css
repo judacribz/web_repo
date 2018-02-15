@@ -1,0 +1,33 @@
+table {
+    width: 600px;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    border: 1px solid black;
+    width: 25%;
+}
+
+th {
+    background-color: darkBlue;
+    color: white;
+}
+
+.selected {
+    background-color: lightBlue;
+}
+
+td input {
+    width: 100px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}

@@ -29,7 +29,7 @@ export default class App extends Component<Props> {
         </Text>
         <Text style={styles.instructions}>
           To get started, edit App.js
-        </Text>
+      </Text>
         <Text style={styles.instructions}>
           {instructions}
         </Text>
