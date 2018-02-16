@@ -16,11 +16,3 @@ th {
 .selected {
     background-color: lightBlue;
 }
-
-.selected {
-    background-color: lightBlue;
-}
-
-.deselected {
-    background-color: white;
-}
