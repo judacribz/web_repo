@@ -1,47 +1,68 @@
 const SELECT = "selected";
-const DESELECT = "deselected";
-const ROW = "row";
-const COLUMN = "col";
+
+var td, numStudents, numAsmts;
 
 window.onload = function () {
-    deselectAll();
+    td = document.getElementsByTagName('td');
+    for (var i = 0; i < td.length; i++) {
+        td[i].index = i;
+        td[i].onclick = function () {
+            selectCell(this);
+        }
+    }
+
+    thAsmt = document.querySelectorAll('tr:nth-of-type(1) th:nth-of-type(n+2)');
+    numAsmts = thAsmt.length;
+    for (var i = 0; i < numAsmts; i++) {
+        thAsmt[i].index = i;
+        thAsmt[i].onclick = function () {
+            selectCol(this);
+        }
+    }
+
+    thStudentId = document.querySelectorAll('tr:nth-of-type(n+2) th');
+    numStudents = thStudentId.length;
+    for (var i = 0; i < numStudents; i++) {
+        thStudentId[i].index = i;
+        thStudentId[i].onclick = function () {
+            selectRow(this);
+        }
+    }
 };
 
-function selectRow(studentNum) {
-    var row = studentNum.getAttribute(ROW);
-    var cells = document.querySelectorAll('[row="' + row + '"]');
+function selectCell(tableCell) {
     deselectAll();
-    setAttrForAll(cells, SELECT, 1);
-};
 
-function selectCol(assignment) {
-    var col = assignment.getAttribute(COLUMN);
-    var cells = document.querySelectorAll('[col="' + col + '"]');
+    tableCell.classList.toggle(SELECT);
+}
+
+function selectRow(tableCell) {
     deselectAll();
-    setAttrForAll(cells, SELECT, 1);
-};
 
-function selectCell(grade) {
-    var row = grade.getAttribute('row');
-    var col = grade.getAttribute('col')
-    var cell = document.querySelector(
-        '[row="' + row + '"][col="' + col + '"]');
+    var startInd = tableCell.index * numAsmts;
+    for (var i = startInd; i < (startInd + numAsmts); i++) {
+        td[i].classList.toggle(SELECT);
+    }
+}
 
-    if (cell.getAttribute('class') == SELECT) {
-        deselectAll();
-    } else {
-        deselectAll();
-        cell.setAttribute("class", SELECT);
+function selectCol(tableCell) {
+    deselectAll();
+
+    var startInd = tableCell.index;
+    for (var i = startInd; i < td.length; i += numAsmts) {
+        td[i].classList.toggle(SELECT);
     }
 }
 
 function deselectAll() {
-    var cells = document.getElementsByTagName("td");
-    setAttrForAll(cells, DESELECT);
+    toggleAll(
+        document.querySelectorAll('[class="' + SELECT + '"]'),
+        SELECT
+    );
 }
 
-function setAttrForAll(cells, attr, i = 0) {
-    for (i; i < cells.length; i++) {
-        cells[i].setAttribute('class', attr);
+function toggleAll(cells, attr) {
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].classList.toggle(attr);
     }
 }
