@@ -1,0 +1,55 @@
+:root {
+    --bg-color: #000070;
+    --accent-color: #F0F0FF;
+    --txt-color: #FFFFFF;
+}
+
+.pageHeader,
+.pageHeader h1 {
+    background-color: var(--bg-color);
+    color: var(--txt-color);
+    font-size: 24pt;
+}
+
+.pageHeader {
+    vertical-align: middle;
+}
+
+.header {
+    background-color: var(--bg-color);
+    color: var(--txt-color);
+    padding: 0.2em 0.2em 0.2em 1em;
+}
+
+.body {
+    border: 2px solid var(--bg-color);
+    background-color: var(--accent-color);
+    padding: 1em;
+}
+
+.body p {
+    margin-top: 0;
+}
+
+.navigation,
+.navigation a {
+    background-color: var(--bg-color);
+    display: inline;
+    text-decoration: none;
+    color: var(--accent-color);
+    list-style: none;
+}
+
+.body ul li {
+    list-style: none;
+}
+
+section {
+    margin-bottom: 1em;
+}
+
+img {
+    height: 5em;
+    width: 6em;
+    padding: 0.51em;
+}
