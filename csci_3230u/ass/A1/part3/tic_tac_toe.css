@@ -1,0 +1,20 @@
+tr:nth-last-of-type(n+2) td {
+    border-bottom: 3px solid black;
+}
+
+tr td:nth-last-of-type(n+2) {
+    border-right: 3px solid black;
+}
+
+.col1,
+.col2 {
+    border-right: 3px solid black;
+}
+
+td {
+    width: 150px;
+    height: 150px;
+    font-size: 100px;
+    text-align: center;
+    vertical-align: center;
+}
