@@ -4,26 +4,53 @@
     --txt-color: #FFFFFF;
 }
 
-.pageHeader,
-.pageHeader h1 {
+.pageHeader {
     background-color: var(--bg-color);
-    color: var(--txt-color);
-    font-size: 24pt;
+    margin: -1.5em;
+    padding-bottom: 0.5em;
 }
 
-.pageHeader {
+.pageHeader h1 {
+    color: var(--txt-color);
+    font-size: 24pt;
     vertical-align: middle;
+}
+
+img {
+    height: 5em;
+    width: 6em;
+    padding: 0.5em;
+    vertical-align: middle;
+}
+
+.navigation {
+    display: inline;
+    list-style: none;
+}
+
+.navigation a {
+    color: var(--accent-color);
+    font-size: 14pt;
+    padding-left: 5em;
+    text-decoration: none;
 }
 
 .header {
     background-color: var(--bg-color);
+}
+
+.header h2 {
     color: var(--txt-color);
-    padding: 0.2em 0.2em 0.2em 1em;
+    font-size: 14pt;
+    margin-bottom: 0.0em;
+    margin-top: 2em;
+    padding: 0.2em;
+    padding-left: 1em;
 }
 
 .body {
-    border: 2px solid var(--bg-color);
     background-color: var(--accent-color);
+    border: 2px solid var(--bg-color);
     padding: 1em;
 }
 
@@ -31,25 +58,37 @@
     margin-top: 0;
 }
 
-.navigation,
-.navigation a {
-    background-color: var(--bg-color);
-    display: inline;
-    text-decoration: none;
-    color: var(--accent-color);
-    list-style: none;
-}
-
 .body ul li {
+    display: inline;
     list-style: none;
+    align-content: center;
+    margin: 1em;
 }
 
 section {
     margin-bottom: 1em;
 }
 
-img {
-    height: 5em;
-    width: 6em;
-    padding: 0.51em;
+#calender {
+    margin-top: 2em;
+}
+
+#month,
+#calender table tr:nth-of-type(2) {
+    text-align: center;
+}
+
+#calender table tr:nth-of-type(n+3):nth-of-type(odd) td {
+    text-align: right;
+    padding-right: 0.2em;
+}
+
+#calender table tr:nth-of-type(n+3):nth-of-type(even) td {
+    height: 6em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#form {
+    margin-top: 1em;
 }

@@ -1,0 +1,68 @@
+.pageHeader {
+	background-color: darkblue;
+	margin-bottom: -1.3em;
+}
+
+.pageHeader> h1{
+	display:inline;
+	vertical-align: middle;
+	color: white;
+	font-size: 24px;
+}
+
+.pageHeader> h1 > img {
+	display:inline;
+	padding: 0.2em;
+	vertical-align: middle;
+	width: 150px;
+    height: 150px;
+}
+
+.navigation {
+	margin-left: 110px;
+}
+
+.nav > li > a {
+	margin-right: 20px;
+	text-decoration: none;
+	color: lightblue;
+	font-weight: bold;
+}
+
+.header {
+	padding-left:1em;
+	padding-right: 0.2em;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	
+	color: white;
+	background-color: darkBlue;
+	border-style: solid;
+	border-color: darkblue;
+	border-width: thin;
+}
+
+.body {
+	padding:1em;
+	margin-bottom: 1em;
+	border-style: solid;
+	border-color: darkblue;
+	border-width: 1px;
+	background-color: lightblue;
+	
+}
+
+#main {
+	padding: 1em;
+}
+
+#calender > TABLE {
+	width:100%;
+	border-color: darkblue;
+	border-style: solid;
+	border-width: 1px;
+}
+
+#commentBox {
+	margin-top: 2.3em;
+}
