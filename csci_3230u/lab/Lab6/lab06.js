@@ -4,23 +4,22 @@ const CLASS_SELECT = "selected";
 const TAG_TD = "td";
 const TAG_TH = "th";
 const TAG_TR = "tr";
+const TAG_INPUT = "<input/>";
+
+const $ELEM_INP = $(TAG_INPUT).attr("type", "number");
 
 // Globals
 // ============================================================================
 var currCell = "";
-var $inputTag = $('<input/>').attr("type", "number");
 var savedVal;
+var $inputTag = $ELEM_INP;
 
 
 // ============================================================================
 // ON READY
 // ============================================================================
 $(document).ready(function () {
-
-    $inputTag.keypress(enterMsg);
-
     $(TAG_TD).click(selectCell);
-
     $(TAG_TH).click(selectTuple);
 }); // END ON READY ===========================================================
 
@@ -30,9 +29,10 @@ $(document).ready(function () {
 function selectCell() {
     deselectAll();
     currCell = $(this);
+    savedVal = currCell.text();
 
-    savedVal = $(this).text();
-    $inputTag.val(savedVal);
+    // $inputTag = $ELEM_INP;
+    $inputTag.keypress(enterMsg).val(savedVal);
 
     currCell.html($inputTag);
     $inputTag.focus();
