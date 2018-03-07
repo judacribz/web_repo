@@ -1,59 +1,78 @@
+// Constants
+// ============================================================================
 const CLASS_SELECT = "selected";
 const TAG_TD = "td";
 const TAG_TH = "th";
 const TAG_TR = "tr";
+
+// Globals
+// ============================================================================
 var currCell = "";
-var inputTag;
+var $inputTag = $('<input/>').attr("type", "number");
 var savedVal;
 
+
+// ============================================================================
+// ON READY
+// ============================================================================
 $(document).ready(function () {
-    var tdElems = $(TAG_TD).get();
-    var ths = $(TAG_TH).get();
-    var ind = -1;
 
-    inputTag = document.createElement('input');
-    inputTag.setAttribute('onkeypress', "enterMsg(event)");
-    inputTag.setAttribute('type', 'number');
+    $inputTag.keypress(enterMsg);
 
-    $(TAG_TD).click(function () {
-        deselectAll();
-        currCell = $(this);
+    $(TAG_TD).click(selectCell);
 
-        savedVal = $(this).text();
-        inputTag.setAttribute('lastValue', "'" + savedVal + "'");
-        inputTag.value = savedVal;
+    $(TAG_TH).click(selectTuple);
+}); // END ON READY ===========================================================
 
-        currCell.html("");
-        currCell.append(inputTag);
-        inputTag.focus();
-        inputTag.select();
-    });
 
-    $(TAG_TH).click(function () {
-        deselectAll();
+// Selects a cell when clicked on
+// ============================================================================
+function selectCell() {
+    deselectAll();
+    currCell = $(this);
 
-        ind = $(this).index();
-        if (ind == 0) {
-            if ($(this).closest(TAG_TR).index() != 0) {
-                $(this).siblings().toggleClass(CLASS_SELECT);
-            }
-        } else {
-            $(TAG_TR + " " + TAG_TD + ":nth-of-type(" + ind + ")").toggleClass(CLASS_SELECT);
+    savedVal = $(this).text();
+    $inputTag.val(savedVal);
+
+    currCell.html($inputTag);
+    $inputTag.focus();
+    $inputTag.select();
+} // end selectCell() =========================================================
+
+
+// Selects the cells in a row or column when a table header is clicked on
+// ============================================================================
+function selectTuple() {
+    deselectAll();
+
+    var ind = $(this).index();
+    if (ind == 0) {
+        if ($(this).closest(TAG_TR).index() != 0) {
+            $(this).siblings().toggleClass(CLASS_SELECT);
         }
-    });
-});
+    } else {
+        $(TAG_TR + " " + TAG_TD + ":nth-of-type(" + ind + ")")
+            .toggleClass(CLASS_SELECT);
+    }
+} // end selectTuple() =========================================================
 
+
+// Deselects all cells that are selected
+// ============================================================================
 function deselectAll() {
     $("." + CLASS_SELECT).toggleClass(CLASS_SELECT);
 
     if (currCell != "") {
         currCell.html(savedVal);
     }
-}
+} // end deselectAll() ========================================================
 
+
+// Handles entering a new value in a selected cell
+// ============================================================================
 function enterMsg(e) {
     if (e.keyCode === 13) {
-        currCell.html(inputTag.value);
+        currCell.html($inputTag.val());
         currCell = "";
     }
-}
+} // end enterMsg(e) ==========================================================
