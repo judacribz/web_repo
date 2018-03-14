@@ -54,6 +54,7 @@ function downloadForecast(lon, lat) {
     var url = "http://api.apixu.com/v1/forecast.json?q=" + lat + "," + lon + "&days=7&key=" + KEY_WEATHER;
     var tr;
     var table = $(document.createElement("table"))
+        .attr({class: "table"})
         .append("<thead><tr>")
         .append("<tbody>");
     $("#forecast")
