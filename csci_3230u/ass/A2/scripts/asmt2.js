@@ -1,6 +1,15 @@
 ;
 // Constants
 // ============================================================================
+const TABLE_SUBS = [
+    "Date",
+    "Condition",
+    "High",
+    "Low",
+    "Wind",
+    "Outlook"
+];
+
 // Globals
 // ============================================================================
 // ============================================================================
@@ -64,36 +73,37 @@ function downloadForecast(lon, lat) {
         .append("<h2>Forecast")
         .append(table);
 
-    addElem("tr", "th", "", "Date", "");
-    addElem("tr", "th", "", "Condition", "");
-    addElem("tr", "th", "", "High", "");
-    addElem("tr", "th", "", "Low", "");
-    addElem("tr", "th", "", "Wind", "");
-    addElem("tr", "th", "", "Outlook", "");
+    TABLE_SUBS.forEach(function (tableSubs) {
+        addElem("tr", "th", "", tableSubs, "");
+    });
 
     $.getJSON(url, function (data) {
         var forecast,
             forecastDay,
-            forecastCond;
+            forecastCond,
+            forecastAttrs = [];
 
         for (var i = 0; i < 7; i++) {
             forecast = data.forecast.forecastday[i];
             forecastDay = forecast.day;
             forecastCond = forecastDay.condition;
+            forecastAttrs = [
+                forecast.date,
+                $(document.createElement("img")).attr("src", forecastCond.icon),
+                forecastDay.maxtemp_c,
+                forecastDay.mintemp_c,
+                forecastDay.maxwind_kph,
+                forecastCond.text
+            ];
 
             tr = $(document.createElement("tr"));
             $("tbody").append(tr);
 
-            addElem(tr, "td", "", forecast.date, "");
-
-            tr.append($(document.createElement("td")).append($(document.createElement("img")).attr("src", forecastCond.icon)));
-            addElem(tr, "td", "", forecastDay.maxtemp_c, "");
-            addElem(tr, "td", "", forecastDay.mintemp_c, "");
-            addElem(tr, "td", "", forecastDay.maxwind_kph, "");
-            addElem(tr, "td", "", forecastCond.text, "");
+            forecastAttrs.forEach(function (forecastAttr) {
+                addElem(tr, "th", "", forecastAttr, "");
+            });
         };
     });
-
 }
 
 function showMap(lon, lat) {
@@ -115,9 +125,14 @@ function showMap(lon, lat) {
 }
 
 function addElem(parent, tag, key, value, unit) {
+    var htmlPart;
 
     if (key != "") {
         key += ": ";
+        htmlPart = key + value + unit;
+    } else {
+        htmlPart = value;
     }
-    $(parent).append($(document.createElement(tag)).html(key + value + unit));
+
+    $(parent).append($(document.createElement(tag)).append(htmlPart));
 }
