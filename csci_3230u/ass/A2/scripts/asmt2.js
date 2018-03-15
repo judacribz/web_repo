@@ -28,6 +28,7 @@ function downloadWeather(lon, lat) {
     var wind = $(document.createElement("div")).attr("id", "wind");
     $("#weather")
         .html("")
+        .addClass("display")
         .append(temp)
         .append(cond)
         .append(wind);
@@ -57,8 +58,10 @@ function downloadForecast(lon, lat) {
         .attr({class: "table"})
         .append("<thead><tr>")
         .append("<tbody>");
+
     $("#forecast")
         .html("")
+        .append("<h2>Forecast")
         .append(table);
 
     addElem("tr", "th", "", "Date", "");
@@ -83,7 +86,7 @@ function downloadForecast(lon, lat) {
 
             addElem(tr, "td", "", forecast.date, "");
 
-            tr.append($(document.createElement("img")).attr("src", forecastCond.icon));
+            tr.append($(document.createElement("td")).append($(document.createElement("img")).attr("src", forecastCond.icon)));
             addElem(tr, "td", "", forecastDay.maxtemp_c, "");
             addElem(tr, "td", "", forecastDay.mintemp_c, "");
             addElem(tr, "td", "", forecastDay.maxwind_kph, "");
@@ -93,7 +96,23 @@ function downloadForecast(lon, lat) {
 
 }
 
-function showMap(lon, lat) {}
+function showMap(lon, lat) {
+    var coords = {
+        lat: parseFloat(lat),
+        lng: parseFloat(lon)
+    };
+
+    var map = new google
+        .maps
+        .Map(document.getElementById("map-canvas"), {
+            zoom: 16,
+            center: coords
+        });
+
+    var marker = new google
+        .maps
+        .Marker({position: coords, map: map});
+}
 
 function addElem(parent, tag, key, value, unit) {
 

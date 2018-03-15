@@ -1,0 +1,16 @@
+#map-canvas,
+#weather {
+    height: 29em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#weather {
+    margin-left: 5em;
+    padding-left: 3em;
+}
+
+.display {
+    background: lightblue;
+    border: 1px black solid;
+}
