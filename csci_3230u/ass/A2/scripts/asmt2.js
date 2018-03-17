@@ -48,8 +48,12 @@ function downloadWeather(lon, lat) {
 
     $.getJSON(url, function (data) {
         var currData = data.current;
+        var foreData = data.forecast.forecastday[0].day;
 
+        console.log(data);
         addElem(temp, "p", "Current", currData.temp_c, "°C");
+        addElem(temp, "p", "Low", foreData.maxtemp_c, "°C");
+        addElem(temp, "p", "High", foreData.mintemp_c, "°C");
         addElem(temp, "p", "Feels like", currData.feelslike_c, "°C");
         addElem(cond, "p", "", currData.condition.text, "");
         addElem(cond, "p", "Cloud cover", currData.cloud, "%");
@@ -100,7 +104,7 @@ function downloadForecast(lon, lat) {
             $("tbody").append(tr);
 
             forecastAttrs.forEach(function (forecastAttr) {
-                addElem(tr, "th", "", forecastAttr, "");
+                addElem(tr, "td", "", forecastAttr, "");
             });
         };
     });
