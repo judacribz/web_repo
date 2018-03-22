@@ -1,7 +1,15 @@
-div.story {
-    padding: 20px;
+.story {
+	padding: 1em;
 }
 
-div.story:nth-child(2n) {
-    background-color: lightGray;
+.story:nth-child(2n) {
+	background-color: lightGray;
+}
+
+hr {
+	border: black inset 0.5px;
+}
+
+.story div:nth-of-type(1):hover {
+	background-color: darkgray;
 }

@@ -1,5 +1,5 @@
 ;
-const DIV_NEWS = "#topStories";
+const DIV_STORIES = "#topStories";
 const DATA_FILE = "data/topstories.atom";
 const TAG_ENTRY = "entry";
 const TAG_TITLE = "title";
@@ -19,20 +19,27 @@ $(document).ready(function () {
             body;
 
         for (var i = 0; i < entries.length; i++) {
-            title = entries[0].getElementsByTagName(TAG_TITLE)[0].childNodes[0].nodeValue;
-            date = entries[0].getElementsByTagName(TAG_DATE)[0].childNodes[0].nodeValue;
-            summary = entries[0].getElementsByTagName(TAG_SUMMARY)[0].childNodes[0].nodeValue;
-            content = entries[0].getElementsByTagName(TAG_CONTENT)[0].childNodes[0].nodeValue;
+            title = getText(entries[i],TAG_TITLE);
+            date = getText(entries[i], TAG_DATE);
+            summary = getText(entries[i], TAG_SUMMARY);
+            content = getText(entries[i], TAG_CONTENT);
 
             head = $(document.createElement("div")).append("<h2>" + title, "<h4>" + date, "<div>" + summary);
-            body = $(document.createElement("div")).append("<h2>" + content);
+            body = $(document.createElement("div")).append("<hr/>", content);
 
-            $(DIV_NEWS).append(head, body);
+            $(DIV_STORIES).append($(document.createElement("div")).addClass("story").append(head,  body));
         }
-        $(DIV_NEWS).accordion();
+
+        $(".story").accordion({
+            collapsible: true,
+        });
+
+        $(".story:not(:nth-of-type(1))").accordion('option', {
+            active: false
+        });
     });
 });
 
-function getText(elem) {
-    elem.childNodes[0].nodeValue;
+function getText(elem, tagName) {
+    return elem.getElementsByTagName(tagName)[0].childNodes[0].nodeValue;;
 }
