@@ -1,37 +1,42 @@
+const JSON_FILE = "http://csundergrad.science.uoit.ca/courses/csci3230u/mtle/quiz_questions.json";
+
+var qs = [],
+    ans = [],
+    corr = [];
+
+var index = 0;
+
 // ============================================================================
 // ON READY
 // ============================================================================;
-var jsonFile = "http://csundergrad.science.uoit.ca/courses/csci3230u/mtle/quiz_questions.json";
-var index = 0;
 $(document).ready(function () {
+    getJsonData();
+
     $("#nextButton")
         .click(handleNext)
         .hide();
 
+    $("#results").hide();
+
     $("#beginButton").click(handleBegin);
-    getJsonData();
 });
 
-var qs = [];
-var ans = [];
-var corr = [];
 function getJsonData() {
-
-    $
-        .getJSON(jsonFile, function (data) {
-            var numQs = data.questions.length;
-            var q;
-            for (var i = 0; i < numQs; i++) {
-                q = data.questions[i];
-                qs.push(q.question);
-                ans.push(q.answers);
-                corr.push(ans[i][q.correctAnswerIndex]);
-            }
-        });
+    $.getJSON(JSON_FILE, function (data) {
+        var numQs = data.questions.length;
+        var q;
+        for (var i = 0; i < numQs; i++) {
+            q = data.questions[i];
+            qs.push(q.question);
+            ans.push(q.answers);
+            corr.push(ans[i][q.correctAnswerIndex]);
+        }
+    });
 }
 
 function handleBegin() {
     $(this).hide();
+    $("#results").show();
     $("#nextButton").show();
     loadQuest();
 }
