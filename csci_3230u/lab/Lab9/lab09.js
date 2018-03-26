@@ -25,6 +25,10 @@ app.set('view engine', 'pug');
 
 // routes
 app.get('/', function (request, response) {
+    response.redirect('/checkUsername');
+});
+
+app.get('/checkUsername', function (request, response) {
     response.render('enterUsername', {
         title: TITLE,
         message: INIT_MSG
@@ -32,12 +36,6 @@ app.get('/', function (request, response) {
 });
 
 app.post('/checkUsername', function (request, response) {
-    checkUsername(request, response)
-});
-
-app.get('/checkUsername', function (request, response) {
-    getthis();
-    // request.body.username = request.params[username];
     checkUsername(request, response)
 });
 
