@@ -4,12 +4,12 @@
   "description": "Lab 10: A simple lab on using MongoDB in Node.js",
   "main": "lab10.js",
   "scripts": {
-    "prestart": "npm run-script build && start mongod || mongod -f config/mongod.conf &",
-    "build": "mkdirp data/database",
-    "start": "sleep 1 && nodemon app",
+    "prestart": "npm run-script build && start mongod || mongod -f mongod.conf &",
+    "build": "mkdirp data/db",
+    "start": "sleep 1 && nodemon lab10",
     "stop": "mongo --eval \"db.getSiblingDB('admin').shutdownServer()\""
   },
-  "author": "Randy J. Fortier",
+  "author": "SherOn Bala",
   "license": "0BSD",
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -17,5 +17,9 @@
     "mkdirp": "^0.5.1",
     "mongoose": "^4.5.1",
     "pug": "^2.0.0-beta3"
+  },
+  "devDependencies": {
+    "mkdirp": "^0.5.1",
+    "nodemon": "^1.17.2"
   }
 }
