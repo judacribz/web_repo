@@ -1,14 +1,7 @@
+# Assignment #1
 
-# Midterm Lab Exam
+### Part 1 - 1/1
 
-### .5/1 - proper event handling (hiding/showing buttons and content)
+### Part 2 - 2/2
 
->should have hidden the answers table in the beginning
-
-### 6/6 - downloading JSON data
-
-### 2/2 - parsing JSON data
-
-### 5/5 - displaying the next question
-
-### 6/6 - adding a new row to the results table
+### Part 3 - 2/2﻿﻿﻿﻿﻿﻿﻿﻿﻿

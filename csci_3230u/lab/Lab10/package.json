@@ -1,0 +1,21 @@
+{
+  "name": "lab10",
+  "version": "1.0.0",
+  "description": "Lab 10: A simple lab on using MongoDB in Node.js",
+  "main": "lab10.js",
+  "scripts": {
+    "prestart": "npm run-script build && start mongod || mongod -f config/mongod.conf &",
+    "build": "mkdirp data/database",
+    "start": "sleep 1 && nodemon app",
+    "stop": "mongo --eval \"db.getSiblingDB('admin').shutdownServer()\""
+  },
+  "author": "Randy J. Fortier",
+  "license": "0BSD",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mkdirp": "^0.5.1",
+    "mongoose": "^4.5.1",
+    "pug": "^2.0.0-beta3"
+  }
+}
