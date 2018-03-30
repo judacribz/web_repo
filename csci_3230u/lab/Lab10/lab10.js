@@ -54,13 +54,23 @@ var userSchema = new Schema({
 });
 var User = mongoose.model('users', userSchema);
 
-USERS.forEach(function(name) {
-    var newUser = new User({
-        username: name,
-        password: "null"
-    });
 
-    newUser.save();
+User.count(function(err, count) {
+    console.dir(err);
+    console.dir(count);
+
+    if( count == 0) {
+        USERS.forEach(function(name) {
+            var newUser = new User({
+                username: name,
+                password: "null"
+            });
+        
+            newUser.save();
+        });
+
+        console.log(count);
+    }
 });
 
 // routes
@@ -87,7 +97,7 @@ function checkUsername(req, res) {
         if (user != null) {
             msg = USER_EXISTS;
         }
-        
+
         res.render('enterUsername', {
             title: TITLE,
             message: msg
