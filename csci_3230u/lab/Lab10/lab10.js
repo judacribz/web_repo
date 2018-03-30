@@ -1,6 +1,10 @@
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
+const uuid = require('uuid/v1');
+const session = require('express-session');
+
 
 const TITLE = "Lab09";
 const USERS = ['admin', 'bsmith', 'rfortier'];
@@ -18,9 +22,46 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/university');
+
 // configure view engine
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
+
+// configure sessions
+app.use(session({
+    genid: function (request) {
+      return uuid();
+    },
+    resave: false,
+    saveUninitialized: false,
+    //cookie: {secure: true},
+    secret: 'apollo slackware prepositional expectations'
+}));
+
+// database schema
+var Schema = mongoose.Schema;
+var userSchema = new Schema({
+  username: {
+    type: String,
+    unique: true,
+    index: true
+  },
+  password: String
+}, {
+  collection: 'users'
+});
+var User = mongoose.model('users', userSchema);
+
+USERS.forEach(function(name) {
+    var newUser = new User({
+        username: name,
+        password: "null"
+    });
+
+    newUser.save();
+});
 
 // routes
 app.get('/', function (request, response) {
@@ -39,16 +80,18 @@ app.post('/checkUsername', function (request, response) {
 });
 
 function checkUsername(req, res) {
-    var username = req.body.username;
+    var name = req.body.username;
     var msg = NEW_USER;
 
-    if (USERS.indexOf(username.toLowerCase()) > -1) {
-        msg = USER_EXISTS;
-    }
-
-    res.render('enterUsername', {
-        title: TITLE,
-        message: msg
+    User.findOne({username: name},function (err, user) {
+        if (user != null) {
+            msg = USER_EXISTS;
+        }
+        
+        res.render('enterUsername', {
+            title: TITLE,
+            message: msg
+        });
     });
 }
 
@@ -56,3 +99,5 @@ app.listen(app.get('port'), function () {
     console.log('Web server listening at ' + url);
     // opn(url);
 })
+
+
