@@ -6,3 +6,6 @@
 /node_modules
 package-lock.json
 data/db
+node_modules/
+*/*/labs/*Lab*/node_modules/
+

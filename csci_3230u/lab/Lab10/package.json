@@ -4,10 +4,11 @@
   "description": "Lab 10: A simple lab on using MongoDB in Node.js",
   "main": "lab10.js",
   "scripts": {
-    "prestart": "npm run-script build && start mongod || mongod -f mongod.conf &",
-    "build": "mkdirp data/db",
-    "start": "sleep 1 && nodemon lab10",
-    "stop": "mongo --eval \"db.getSiblingDB('admin').shutdownServer()\""
+    "prestart": "npm run-script mkdirs",
+    "mkdirs": "mkdirp data/db data/logs",
+    "start": "nodemon app",
+    "stop": "npm run-script stop_mongo",
+    "stop_mongo": "mongo --eval \"db.getSiblingDB('admin').shutdownServer()\""
   },
   "author": "SherOn Bala",
   "license": "0BSD",
@@ -16,12 +17,16 @@
     "express": "^4.14.0",
     "express-session": "^1.15.6",
     "mkdirp": "^0.5.1",
-    "mongoose": "^5.0.10",
+    "mongoose": "5.0.12",
     "pug": "^2.0.0",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
+    "child_process": "1.0.2",
     "mkdirp": "^0.5.1",
-    "nodemon": "^1.17.2"
+    "nodemon": "^1.17.2",
+    "os": "0.1.1",
+    "pug": "2.0.3",
+    "util": "0.10.3"
   }
 }
