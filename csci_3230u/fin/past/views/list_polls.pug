@@ -1,0 +1,17 @@
+extends layout
+block content
+    h1= title
+    table(class="table")
+        tr
+            th #
+            th Question
+            th Answer Poll
+            th View Results
+        each question in questions
+            tr
+                td= question.questionNum
+                td= question.question
+                td
+                    a(class='btn btn-primary', href='/answerPollQuestion/' + question.questionNum) Answer
+                td
+                    a(class='btn btn-primary', href='/pollResults/' + question.questionNum) View

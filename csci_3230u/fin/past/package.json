@@ -1,0 +1,30 @@
+{
+  "name": "final_exam_solutions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The solutions to the final lab exam for CSCI 3230u",
+  "main": "app.js",
+  "scripts": {
+    "preinstall": "mkdirp data/db",
+    "prestart": "npm run build &",
+    "build": "mongod --dbpath data/db",
+    "start": "nodemon app",
+    "poststop": "npm run stop",
+    "stop": "mongo --eval \"db.getSiblingDB('admin').shutdownServer()\""
+  },
+  "author": "SherOn Bala",
+  "license": "0BSD",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "mkdirp": "^0.5.1",
+    "mongoose": "4.11.0",
+    "node-uuid": "1.4.7",
+    "pug": "^2.0.0-beta6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}

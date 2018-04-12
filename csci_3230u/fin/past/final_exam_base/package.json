@@ -1,0 +1,21 @@
+{
+  "name": "final_exam_solutions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The solutions to the final lab exam for CSCI 3230u",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Randy J. Fortier",
+  "license": "0BSD",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "mongoose": "^4.7.1",
+    "node-uuid": "^1.4.7",
+    "pug": "^2.0.0-beta6"
+  }
+}

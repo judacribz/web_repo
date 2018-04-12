@@ -4,10 +4,7 @@ const express = require('express');
 const uuid = require('uuid/v1');
 const session = require('express-session');
 
-const build = require('./build.js');
-
 const app = express();
-build();
 
 const TITLE = "Lab10";
 const USERS = ['admin', 'bsmith', 'rfortier'];
@@ -45,10 +42,7 @@ app.use(session({
 
 var User = mongoose.model('users', require('./models/users.schema'));
 
-User.count(function (err, count) {
-    console.dir(err);
-    console.dir(count);
-
+User.count((err, count) => {
     if (count == 0) {
         USERS.forEach(function (name) {
             var newUser = new User({

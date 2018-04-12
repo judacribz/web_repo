@@ -1,29 +1,56 @@
-const sys = require('util');
+const spawn = require('child_process').spawn;
 const exec = require('child_process').exec;
 const os = require('os');
 
-function buildEnv() {
-    if (os.type() === 'Linux') {
-        logEnv('Linux');
-        exec("mongod -f ./config/mongod_lnx.conf", puts);
-    } else if (os.type() === 'Darwin') {
-        logEnv('Mac');
-        exec("mongod -f ./config/mongod_lnx.conf", puts);
-    } else if (os.type() === 'Windows_NT') {
-        logEnv('Windows');
-        exec("start mongod -f ./config/mongod_win.conf", puts);
-    } else
-        throw new Error("Unsupported OS found: " + os.type());
+const mongoConfig = "./config/mongod.conf";
+const startMongo = "mongod";
+const startMongoWin = "start " + startMongo;
+const osType = os.type();
 
-    exec("rs");
+// setup os name
+var osName = 'Linux';
+switch (osType) {
+    case 'Mac':
+        osName = 'Macintosh';
+    case 'Linux':
+        logEnvStart(osName, startMongo);
+        break;
+    case 'Windows_NT':
+        osName = 'Windows';
+        logEnvStart(osName, startMongoWin);
+        break;
+    default:
+        throw new Error("Unsupported OS found: " + osType);
+        break;
 }
 
-function puts(error, stdout, stderr) {
+// runs mongod server for each env
+function logEnvStart(osEnv, cmd) {
+    console.log(osEnv + ' environment detected.');
+
+    switch (osEnv) {
+        case 'Windows':
+            exec(cmd + ' -f ' + mongoConfig, err);
+            break;
+
+        default:
+            var pipe = spawn(cmd, ['-f', mongoConfig]);
+
+            pipe.stdout.on('data', function (data) {
+                console.log(data.toString('utf8'));
+            });
+            pipe.stderr.on('data', (data) => {
+                console.log(data.toString('utf8'));
+            });
+            pipe.on('close', (code) => {
+                console.log('Process exited with code: ' + code);
+
+            });
+            break;
+    }
+}
+
+// output for mongod error in windows
+function err(error, stdout, stderr) {
     console.log(stdout);
 }
-
-function logEnv(osType) {
-    console.log(osType + " environment detected.");
-}
-
-module.exports = buildEnv;

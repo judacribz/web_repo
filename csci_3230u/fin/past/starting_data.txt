@@ -1,0 +1,54 @@
+db.pollQuestions.insert({
+  questionNum: 1,
+  question: 'Which electoral system do you support for Canada?',
+  answers: [
+    {answerNum: 1, answer:  'Winner takes all'},
+    {answerNum: 2, answer:  'Proportional'},
+    {answerNum: 3, answer:  'Ranked'}
+  ]});
+
+db.pollQuestions.insert({
+  questionNum: 2,
+  question: 'Which is the best movie category?',
+  answers: [
+    {answerNum: 1, answer:  'Comedy'},
+    {answerNum: 2, answer:  'Drama'},
+    {answerNum: 3, answer:  'Action'},
+    {answerNum: 4, answer:  'Horror'}
+  ]});
+
+db.pollQuestions.insert({
+  questionNum: 3,
+  question: 'What kind of final exam do you prefer?',
+  answers: [
+    {answerNum: 1, answer:  'Easy, multiple choice'},
+    {answerNum: 2, answer:  'Tough, short answer'},
+    {answerNum: 3, answer:  'Easy, lab exam'},
+    {answerNum: 4, answer:  'Tough, lab exam'},
+    {answerNum: 5, answer:  'Tough, essay'}
+  ]});
+
+db.pollQuestions.insert({
+  questionNum: 4,
+  question: 'Which is the best Pokemon game?',
+  answers: [
+    {answerNum: 1, answer:  'Pokemon Red'},
+    {answerNum: 2, answer:  'Pokemon Yellow'},
+    {answerNum: 3, answer:  'Pokemon Emerald'},
+    {answerNum: 4, answer:  'Pokemon Black'},
+    {answerNum: 5, answer:  'Pokemon Alpha Sapphire'},
+    {answerNum: 6, answer:  'Pokemon Moon'}
+  ]});
+
+db.pollQuestions.insert({
+  questionNum: 5,
+  question: 'What is the best kind of music?',
+  answers: [
+    {answerNum: 1, answer:  'Pop'},
+    {answerNum: 2, answer:  'Rock'},
+    {answerNum: 3, answer:  'Hip hop'},
+    {answerNum: 4, answer:  'Metal'},
+    {answerNum: 5, answer:  'Jazz'},
+    {answerNum: 6, answer:  'Country'}
+  ]});
+

@@ -1,2 +1,0 @@
-Create react native app:
-react-native init <app_name>
